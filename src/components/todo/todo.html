@@ -1,0 +1,44 @@
+<section class="todoapp">
+    <div>
+        <header class="header">
+            <h1>todos</h1>
+            <input class="new-todo" @keyup.enter="$event.target.blur()" @blur="handleAddTodo" placeholder="What needs to be done?" value="">
+        </header>
+        <section class="main">
+            <input id="toggle-all" class="toggle-all" type="checkbox">
+            <label for="toggle-all"></label>
+            <ul class="todo-list" v-if="filteredTodos.length">
+                <li :class="{ completed: todo.completed }" v-for="todo in filteredTodos" :key="todo.id">
+                    <div class="view">
+                        <input class="toggle" type="checkbox" @click="handleToggleCompleteTodo(todo.id)">
+                        <label>{{todo.name}}</label>
+                        <button class="destroy" @click="handleDeleteTodo(todo.id)" />
+                    </div>
+                    <input class="edit" value="qwe">
+                </li>
+            </ul>
+        </section>
+        <footer class="footer">
+            <span class="todo-count">
+                <strong>{{todoAmount}} </strong>
+                <span></span>
+                <span>item</span>
+                <span>left</span>
+            </span>
+            <ul class="filters">
+                <li>
+                    <a href="#/" :class="{selected: filter === 'all' }" @click.prevent="handleFilterTodos('all')">All</a>
+                </li>
+                <span> </span>
+                <li>
+                    <a href="#/active" :class="{selected: filter === 'active' }" @click.prevent="handleFilterTodos('active')">Active</a>
+                </li>
+                <span> </span>
+                <li>
+                    <a href="#/completed" :class="{selected: filter === 'completed' }" @click.prevent="handleFilterTodos('completed')">Completed</a>
+                </li>
+            </ul>
+            <button v-if="completedTodos.length" @click="handleDeleteCompletedTodos" class="clear-completed">Clear completed</button>
+        </footer>
+    </div>
+</section>
