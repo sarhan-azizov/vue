@@ -1,17 +1,17 @@
 <template>
-    <Todo />
+  <TodoVuex />
 </template>
 
 <script>
 
 import Components from '@/components/index';
 
-const { Todo } = Components;
+const { TodoVuex } = Components;
 
 export default {
-  name: 'Home',
+  name: 'TodoVuexScreen',
   components: {
-    Todo,
+    TodoVuex,
   },
 };
 </script>

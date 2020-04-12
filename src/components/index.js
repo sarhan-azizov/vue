@@ -1,3 +1,5 @@
+import todoVuex from './todo-vuex/module';
+
 const req = require.context('./', true, /\.vue$/);
 const atoms = {};
 
@@ -7,3 +9,7 @@ req.keys().forEach((fileName) => {
 });
 
 export default atoms;
+
+export const modules = {
+  todoVuex,
+};

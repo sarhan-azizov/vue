@@ -8,11 +8,11 @@
             <ul class="todo-list" v-if="filteredTodos.length">
                 <li :class="{ completed: todo.completed }" v-for="todo in filteredTodos" :key="todo.id">
                     <div class="view">
-                        <input class="toggle" :checked="todo.completed" type="checkbox" @click="handleToggleCompleteTodo(todo.id)">
-                        <label>{{todo.name}}</label>
-                        <button class="destroy" @click="handleDeleteTodo(todo.id)" />
+                        <input class="toggle" :checked="todo.completed" type="checkbox" @click="toggleComplete(todo.id)">
+                        <label>{{todo.title}}</label>
+                        <button class="destroy" @click="deleteTodo(todo.id)" />
                     </div>
-                    <input class="edit" value="qwe">
+                    <input class="edit" value="">
                 </li>
             </ul>
         </section>
@@ -36,7 +36,6 @@
                     <a href="#/completed" :class="{selected: filter === 'completed' }" @click.prevent="handleFilterTodos('completed')">Completed</a>
                 </li>
             </ul>
-            <button v-if="completedTodos.length" @click="handleDeleteCompletedTodos" class="clear-completed">Clear completed</button>
         </footer>
     </div>
 </section>
