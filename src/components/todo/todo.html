@@ -10,7 +10,7 @@
             <ul class="todo-list" v-if="filteredTodos.length">
                 <li :class="{ completed: todo.completed }" v-for="todo in filteredTodos" :key="todo.id">
                     <div class="view">
-                        <input class="toggle" type="checkbox" @click="handleToggleCompleteTodo(todo.id)">
+                        <input class="toggle" :checked="todo.completed" type="checkbox" @click="handleToggleCompleteTodo(todo.id)">
                         <label>{{todo.name}}</label>
                         <button class="destroy" @click="handleDeleteTodo(todo.id)" />
                     </div>

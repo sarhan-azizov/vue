@@ -7,12 +7,29 @@ export default {
   data() {
     return {
       filter: 'all',
-      todos: [{
-        id: Date.now(),
-        name: 'asdasdasd',
-        completed: false,
-      }],
+      todos: [],
     };
+  },
+  created() {
+    const initialValue = window.localStorage.getItem('@VueTodoMVC');
+
+    if (initialValue) {
+      try {
+        const { filter, todos } = JSON.parse(initialValue);
+        this.todos = todos;
+        this.filter = filter;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  },
+  watch: {
+    $data: {
+      handler(val) {
+        window.localStorage.setItem('@VueTodoMVC', JSON.stringify(val));
+      },
+      deep: true,
+    },
   },
   computed: {
     filteredTodos() {
